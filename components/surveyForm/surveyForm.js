@@ -38,7 +38,8 @@ export default function SurveyForm(props) {
 			const finalFormData = {
 				...formData,
 				email_domain: domain,
-				display_name: 'Anonymous'
+				display_name: 'Anonymous',
+				email: session.user.email
 			}
 			return await axios.post('/api/vote', finalFormData)
 		}
@@ -46,6 +47,7 @@ export default function SurveyForm(props) {
 		const finalFormData = {
 			...formData,
 			email_domain: domain,
+			email: session.user.email
 		}
 		return await axios.post('/api/vote', finalFormData)
 

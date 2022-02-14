@@ -29,7 +29,7 @@ const voteSchema = new mongoose.Schema({
 		min: 1,
 		required: true,
 	},
-	associated_account_id: {
+	email: {
 		type: String,
 		min: 1,
 		required: true,

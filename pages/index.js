@@ -16,14 +16,13 @@ export default function Home() {
 
       <div>
         <h1>Polls by Verified Filipino Students</h1>
-        <p>Browse through polls that were answered by verified students accross thousands of schools in the Philippines</p>
+        <p>Browse through polls that were answered by verified students from the thousands of schools in the Philippines</p>
         <div>
           <Link passHref href="/vote">
             <button>
               Cast a Vote
             </button>
           </Link>
-          <button>View Active Polls</button>
         </div>
       </div>
 
