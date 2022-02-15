@@ -28,7 +28,8 @@ export default NextAuth({
           const foundUser = await User.findOne({email: profile.email})
           if (!foundUser) {
             const newUser = new User({
-              email: profile.email
+              email: profile.email,
+              voted: false,
             })
             await newUser.save()
           }
