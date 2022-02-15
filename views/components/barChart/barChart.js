@@ -21,49 +21,54 @@ ChartJS.register(
 export const options = {
   indexAxis: 'y',
 	scales: {
-		yAxes: [{
-			ticks: {
-				beginAtZero: true,
-				min: 0
-			}    
-		}]
-	},
+    x: {
+      ticks: {
+        display: false,
+      },
+      grid: {
+        display: false,
+        borderWidth: 0
+      }
+    },
+    y: {
+      min: 0,
+      ticks: {
+        font: { family: 'Inter' },
+        padding: 15,
+      },
+      grid: {
+        display: false,
+        borderWidth: 0
+      }
+    }
+  },
+  layout: {
+  },
   elements: {
     bar: {
-			borderRadius: 5
+			borderRadius: 10,
+      borderSkipped: 'false',
+      pointStyle: 'circle'
     },
   },
   responsive: true,
   plugins: {
     legend: {
-      position: 'right',
+      display: false,
     },
     title: {
-      display: true,
-      text: 'Chart.js Horizontal Bar Chart',
+      display: false,
     },
+    tooltip: {
+      padding: 10,
+      displayColors: false,
+      titleFont: { family: 'Inter' },
+      bodyFont: { family: 'Inter' },
+    }
   },
 };
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
-export const data = {
-  labels,
-  datasets: [
-    {
-      data: labels.map((item, i) => i),
-			backgroundColor: [
-					'rgba(255, 99, 132, 0.2)',
-					'rgba(54, 162, 235, 0.2)',
-					'rgba(255, 206, 86, 0.2)',
-					'rgba(75, 192, 192, 0.2)',
-					'rgba(153, 102, 255, 0.2)',
-					'rgba(255, 159, 64, 0.2)'
-			],
-    },
-  ],
-};
-
-export default function BarChart() {
-  return <Bar options={options} data={data} />;
+export default function BarChart(props) {
+  const { data } = props
+  return (<Bar options={options} data={data} />);
 }

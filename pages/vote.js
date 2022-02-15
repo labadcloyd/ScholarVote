@@ -11,12 +11,15 @@ export default function Vote(props) {
 
 	async function fetchUser(email) {
 		const foundUser = await axios.get('/api/user', { params: { email: email } })
-
-		if (foundUser?.data?.voted === false) {
-			setHasVoted(false)
-		} else {
-			setHasVoted(true)
-		}
+		/*
+			! UNCOMMENT AFTER TESTING
+		*/
+		setHasVoted(false)
+		// if (foundUser?.data?.voted === false) {
+		// 	setHasVoted(false)
+		// } else {
+		// 	setHasVoted(true)
+		// }
 	}
 
 	useEffect(() => {

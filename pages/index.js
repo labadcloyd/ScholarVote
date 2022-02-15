@@ -1,11 +1,31 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import axios from 'axios'
 import { useSession } from "next-auth/react"
 import Link from 'next/link'
-import { BarChart } from '../views/components'
+import { useEffect, useState } from 'react'
+import { PresidentialChart } from '../views/layouts'
+import VicePresidentialChart from '../views/layouts/vicePresidentialChart'
 
 export default function Home() {
   const { data, status } = useSession()
+  const [presChoice, setPresChoice] = useState(null)
+  const [vPresChoice, setVPresChoice] = useState(null)
+  
+  async function fetchData() {
+    const presidential_choice = axios.get('/api/vote', { params: { voteChoice: 'presidential_choice' } })
+    const vice_presidential_choice = axios.get('/api/vote', { params: { voteChoice: 'vice_presidential_choice' } })
+    Promise.all([presidential_choice, vice_presidential_choice]).then((results) => {
+      // const [presResults, vPresResults] = results
+      console.log(results[0].data)
+      setPresChoice(results[0].data)
+      setVPresChoice(results[1].data)
+    });
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
   
   return (
     <div>
@@ -21,7 +41,7 @@ export default function Home() {
         <div>
           <Link passHref href="/vote">
             <button>
-              Cast a Vote
+              Cast a Vote on The Current Poll
             </button>
           </Link>
         </div>
@@ -30,12 +50,13 @@ export default function Home() {
       <div>
         <h2>Presidential bets for 2022 elections</h2>
         <p>This poll will continue receving votes until May 8, 2022</p>
-        <BarChart/>
+        <PresidentialChart data={presChoice} />
       </div>
 
       <div>
         <h2>Vice-Presidential bets for 2022 elections</h2>
         <p>This poll will continue receving votes until May 8, 2022</p>
+        <VicePresidentialChart data={vPresChoice} />
       </div>
 
       <div>

@@ -17,7 +17,7 @@ const vice_presidential_choice = [
 	{ color: '#0054a5', label: 'Rizalito David', value: 'rizalito_david' },
 	{ color: '#00039f', label: 'Manny Lopez', value: 'manny_lopez' },
 	{ color: '#9683ec', label: 'Willie Ong', value: 'willie_ong' },
-	{ color: '#f0e68c', label: 'Francis Pangilinan', value: 'francis_pangilinan' },
+	{ color: '#fe18a3', label: 'Francis Pangilinan', value: 'francis_pangilinan' },
 	{ color: '#4aa02c', label: 'Vicente Sotto III', value: 'vicente_sotto_III' },
 	{ color: '#d2691e', label: 'Carlos Serapio', value: 'carlos_serapio' },
 ]

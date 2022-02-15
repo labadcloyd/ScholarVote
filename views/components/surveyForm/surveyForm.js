@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react'
-import { presidential_choice, vice_presidential_choice } from './surveyFormOptions'
+import { presidential_choice, vice_presidential_choice } from '../../../constants/surveyFormOptions'
 import { TextInput, Select } from '../inputs'
 import axios from 'axios'
 
 export default function SurveyForm(props) {
 	const { session } = props
-	console.log(session)
 
 	const initialFormData = {
 		display_name: '',

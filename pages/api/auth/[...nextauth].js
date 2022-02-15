@@ -23,6 +23,9 @@ export default NextAuth({
     async signIn(data) {
       const { account, profile, user } = data
       if (account.provider === "google") {
+        /* 
+          TODO add error handling in saving the user to the db
+        */
         if (profile.email_verified && profile.email.endsWith("edu.ph")) {
 
           const foundUser = await User.findOne({email: profile.email})

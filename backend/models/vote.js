@@ -35,7 +35,12 @@ const voteSchema = new mongoose.Schema({
 		required: true,
 	}
 }, {
-    timestamps: true
+	timestamps: true,
+	toJSON: {
+		transform(doc, ret){
+			delete ret.email
+		}
+	}
 })
 // ! it is very important to structure the model like this as Nextjs has a bug that creates the models again every render if the model is not done like this
 const Vote = mongoose.models.Vote || mongoose.model('Vote', voteSchema )

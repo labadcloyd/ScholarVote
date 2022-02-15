@@ -9,9 +9,11 @@ const userSchema = new mongoose.Schema({
 	voted: {
 		type: Boolean,
 		required: true,
+	},
+	age: {
+		type: Number
 	}
-}, 
-{
+}, {
 	timestamps: true,
 	toJSON: {
 		transform(doc, ret){
