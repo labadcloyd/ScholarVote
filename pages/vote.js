@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { useSession } from "next-auth/react"
 import { useEffect, useState } from 'react'
-import { SurveyForm } from '../components'
+import { SurveyForm } from '../views/components'
 import axios from 'axios'
 
 export default function Vote(props) {

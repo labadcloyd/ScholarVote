@@ -1,4 +1,5 @@
 import SurveyForm from './surveyForm/surveyForm'
 import TextInput from './inputs/textInput/textInput'
+import BarChart from './barChart'
 
-export { SurveyForm, TextInput }
+export { SurveyForm, TextInput, BarChart }

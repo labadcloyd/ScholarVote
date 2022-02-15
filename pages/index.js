@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { useSession } from "next-auth/react"
 import Link from 'next/link'
+import { BarChart } from '../views/components'
 
 export default function Home() {
   const { data, status } = useSession()
@@ -29,6 +30,7 @@ export default function Home() {
       <div>
         <h2>Presidential bets for 2022 elections</h2>
         <p>This poll will continue receving votes until May 8, 2022</p>
+        <BarChart/>
       </div>
 
       <div>
