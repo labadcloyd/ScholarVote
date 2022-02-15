@@ -33,6 +33,9 @@ const voteSchema = new mongoose.Schema({
 		type: String,
 		min: 1,
 		required: true,
+	},
+	age: {
+		type: Number
 	}
 }, {
 	timestamps: true,
@@ -42,6 +45,7 @@ const voteSchema = new mongoose.Schema({
 		}
 	}
 })
+voteSchema.index({ "presidential_choice.label": 1, "vice_presidential_choice.label": 1 })
 // ! it is very important to structure the model like this as Nextjs has a bug that creates the models again every render if the model is not done like this
 const Vote = mongoose.models.Vote || mongoose.model('Vote', voteSchema )
 

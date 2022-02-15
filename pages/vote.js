@@ -3,9 +3,11 @@ import { useSession } from "next-auth/react"
 import { useEffect, useState } from 'react'
 import { SurveyForm } from '../views/components'
 import axios from 'axios'
+import { useAuthContext } from "../context/uiContext";
 
 export default function Vote(props) {
-  const { data, status } = useSession()
+	const { data, status } = useAuthContext()
+
 	const router = useRouter()
 	const [hasVoted, setHasVoted] = useState(null)
 

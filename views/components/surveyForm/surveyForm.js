@@ -2,9 +2,15 @@ import { useEffect, useState } from 'react'
 import { presidential_choice, vice_presidential_choice } from '../../../constants/surveyFormOptions'
 import { TextInput, Select } from '../inputs'
 import axios from 'axios'
+import DateInput from '../inputs/dateInput'
+import {
+	useAuthContext,
+  useTogglePopup
+} from "../../../context/uiContext";
 
 export default function SurveyForm(props) {
-	const { session } = props
+	const { data: session } = useAuthContext()
+	const togglePopup = useTogglePopup()
 
 	const initialFormData = {
 		display_name: '',
@@ -15,7 +21,8 @@ export default function SurveyForm(props) {
 		vice_presidential_choice: {
 			label: '',
 			value: ''
-		}
+		},
+		birthdate: ''
 	}
 
 	const [formData, setFormData] = useState(initialFormData)
@@ -26,30 +33,31 @@ export default function SurveyForm(props) {
 				!formData.presidential_choice.value ||
 				!formData.presidential_choice.label ||
 				!formData.vice_presidential_choice.value ||
-				!formData.vice_presidential_choice.label
+				!formData.vice_presidential_choice.label ||
+				!formData.birthdate
 		){
-			return
+			return	togglePopup(true, 'error', 'Error: Missing fields')
 		}
-
-		const [email, domain] = session.user.email.split('@')
-
-		if (!formData.display_name) {
+		try {
+			const [email, domain] = session.user.email.split('@')
+			if (!formData.display_name) {
+				const finalFormData = {
+					...formData,
+					email_domain: domain,
+					display_name: 'Anonymous',
+					email: session.user.email,
+				}
+				return await axios.post('/api/vote', finalFormData)
+			}
 			const finalFormData = {
 				...formData,
 				email_domain: domain,
-				display_name: 'Anonymous',
 				email: session.user.email
 			}
 			return await axios.post('/api/vote', finalFormData)
+		} catch (err) {
+			togglePopup(true, 'error', 'A server error occured')
 		}
-
-		const finalFormData = {
-			...formData,
-			email_domain: domain,
-			email: session.user.email
-		}
-		return await axios.post('/api/vote', finalFormData)
-
 	}
 
   return (
@@ -83,6 +91,16 @@ export default function SurveyForm(props) {
 							options={vice_presidential_choice}
 							fieldName={'vice_presidential_choice'}
 							placeholder={'Vice-Presidential Choice'}
+						/>
+					</div>
+
+					<div>
+						<DateInput
+							value={formData.birthdate}
+							setValue={setFormData}
+							options={vice_presidential_choice}
+							fieldName={'birthdate'}
+							placeholder={'Birthdate'}
 						/>
 					</div>
 

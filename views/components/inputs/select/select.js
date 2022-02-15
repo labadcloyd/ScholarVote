@@ -6,7 +6,6 @@ export default function Select(props) {
 		setValue((prevState) => {
 			return {...prevState, [fieldName]: { value, label }}
 		})
-		console.log(value)
 	}
 
 	return (

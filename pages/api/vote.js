@@ -18,14 +18,15 @@ export default async function handler(req, res) {
 		if (!session) {
 			return res.status(401).json([{ message: 'Error: Unauthenticated request' }])
 		}
-		const { display_name, presidential_choice, vice_presidential_choice, email_domain, email } = req.body
+		const { display_name, presidential_choice, vice_presidential_choice, email_domain, email, birthdate } = req.body
 		if (
 			!presidential_choice.value ||
 			!presidential_choice.label ||
 			!vice_presidential_choice.value ||
 			!vice_presidential_choice.label ||
 			!email_domain ||
-			!email
+			!email ||
+			!birthdate
 		) {
 			return res.status(400).json([{ message: 'Error: Missing fields' }])
 		}
@@ -37,14 +38,21 @@ export default async function handler(req, res) {
 		// 	return res.status(400).json([{ message: 'Error: You can only vote once' }])
 		// }
 
+		function calculateAge(birthday) { // birthday is a date
+			var ageDifMs = Date.now() - new Date(birthday).getTime();
+			var ageDate = new Date(ageDifMs); // miliseconds from epoch
+			return Math.abs(ageDate.getUTCFullYear() - 1970);
+		}
+
 		const newVote = new Vote({
 			display_name: display_name || 'Anonymous',
 			presidential_choice,
 			vice_presidential_choice, 
 			email_domain,
-			email
+			email,
 		})
 		foundUser.voted = true
+		foundUser.age = calculateAge(birthdate)
 
 		try {
 			await foundUser.save()
