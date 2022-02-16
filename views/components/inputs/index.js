@@ -1,4 +1,4 @@
-import Select from "./select/Select";
+import Select from "./select";
 import TextInput from "./textInput";
 
 export { Select, TextInput }
