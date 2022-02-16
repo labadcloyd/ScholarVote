@@ -11,6 +11,21 @@ connectDb();
 
 
 nextApp.prepare().then(() => {
+
+  // logging out
+  app.delete('/deleteSession', async (req, res) => {
+    const cookieHeader = req.headers.cookie.split(';')
+    
+    const finalHeader = cookieHeader.map((item) => {
+      const [title, value] = item.split('=')
+      if (title.includes('next-auth.session-token')) {
+        return `${title}=`
+      }
+      return item
+    })
+
+    return res.setHeader('Set-Cookie', finalHeader).end()
+  })
   
   app.all('*', (req, res) => {
     return handle(req, res);

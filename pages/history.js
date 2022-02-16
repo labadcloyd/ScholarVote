@@ -13,8 +13,6 @@ export default function History() {
 		setLoadingFetchData(true)
 		try {
 			const { data } = await axios.get('/api/history', { params: { id: (id || '') } })
-			console.log(data)
-			console.log(historyData)
 			if (Array.isArray(data)) {
 				if (historyData !== null) {
 					if (data.length < 1) {

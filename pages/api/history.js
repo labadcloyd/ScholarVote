@@ -8,7 +8,7 @@ export default async function handler(req, res) {
 				const data = await Vote.find({ _id: { $lt: id } }).sort({ _id: -1 }).limit(20)
 				return res.status(200).json(data)
 			} catch(err) {
-				console.error(err)
+				console.log({error: err})
 				return res.status(500).json([{ message: 'An error occured in the server' }])
 			}
 		}
@@ -16,7 +16,7 @@ export default async function handler(req, res) {
 			const data = await Vote.find().sort({ _id: -1 }).limit(20)
 			return res.status(200).json(data)
 		} catch(err) {
-			console.error(err)
+			console.log({error: err})
 			return res.status(500).json([{ message: 'An error occured in the server' }])
 		}
 	}

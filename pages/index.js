@@ -1,14 +1,14 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import axios from 'axios'
-import { useSession } from "next-auth/react"
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { PresidentialChart } from '../views/layouts'
 import VicePresidentialChart from '../views/layouts/vicePresidentialChart'
-import { useTogglePopup } from "../context/uiContext";
+import { useTogglePopup } from "../context/uiContext"
+import { useRouter } from 'next/router'
 
-export default function Home() {
+export default function Home(props) {
+  const router = useRouter()
 	const togglePopup = useTogglePopup()
 
   const [presChoice, setPresChoice] = useState(null)
@@ -21,6 +21,11 @@ export default function Home() {
       setPresChoice(results[0].data)
       setVPresChoice(results[1].data)
     });
+  }
+
+  async function logOut() {
+    await axios.delete('/deleteSession')
+    router.reload(window.location.pathname)
   }
 
   useEffect(() => {
@@ -51,6 +56,9 @@ export default function Home() {
               Cast Vote
             </button>
           </Link>
+          <button onClick={logOut}>
+            signout
+          </button>
         </div>
       </div>
 

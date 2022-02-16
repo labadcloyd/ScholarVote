@@ -1,5 +1,7 @@
 import { User, Vote } from '../../backend/models'
 import { getSession } from "next-auth/react"
+import { decode, encode } from "next-auth/jwt"
+const secret = process.env.NEXTAUTH_SECRET
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {
@@ -47,17 +49,33 @@ export default async function handler(req, res) {
 			vice_presidential_choice, 
 			email_domain,
 			email,
+			age: calculateAge(birthdate)
 		})
 		foundUser.voted = true
 		foundUser.age = calculateAge(birthdate)
 
+		// UPDATING SESSION TOKEN
+		const cookieHeader = req.headers.cookie.split(';')
+		const foundToken = cookieHeader.find((item) => {
+			if (item.includes('next-auth.session-token')) {
+				return item
+			}
+		})
+		const token = foundToken.split('=')
+		const jwt = await decode({ token: token[1], secret: secret })
+		
+		jwt.voted = true
+		const encodedCookie = await encode({ token: jwt, secret: secret })
+		token[1] = encodedCookie
+		cookieHeader[cookieHeader.length-1] = token.join('=')
+
 		try {
 			await foundUser.save()
 			await newVote.save()
-			return res.status(201).json([{ message: 'Successfully saved vote' }])
+			return res.setHeader('Set-Cookie', cookieHeader).status(201).json([{ message: 'Successfully saved vote' }])
 		} catch(err){
 			if (err) {
-				console.error(err)
+				console.log({error: err})
 				return res.status(500).json([{ message: 'Error: an error eccored in the server' }])
 			}
 		}

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react"
 import { BarChart } from "../../components"
 import {
   vice_presidential_choice as vice_presidential_options
@@ -15,6 +16,8 @@ export const initialdata = {
 };
 
 export default function VicePresidentialChart(props) {
+  const { data: session, status } = useSession()
+
 	const { data } = props
 	const [chartData, setChartData] = useState(initialdata)
 
@@ -22,11 +25,11 @@ export default function VicePresidentialChart(props) {
 		if (data !== null) {
 			if (Array.isArray(data)) {
 				// adding color to data
-				const pressDataWithColors = data?.map((item) => {
-					const finalItem = vice_presidential_options.find((pres) => {
-						if (pres.label === item._id) { return pres }
+				const pressDataWithColors = vice_presidential_options.map((item) => {
+					const finalItem = data.find((pres) => {
+						if (pres._id === item.label) { return pres }
 					})
-					return { ...finalItem, quantity: item.quantity}
+					return { ...item, ...finalItem, quantity: (finalItem?.quantity || 0)}
 				})
 				pressDataWithColors.sort((a, b) => a.quantity > b.quantity ? -1 : 1)
 
@@ -46,7 +49,20 @@ export default function VicePresidentialChart(props) {
 	}, [data])
 	return (
 		<>
-			<BarChart data={chartData} />
+			<div>
+				{status === 'loading' &&
+					<div>Loading...</div>
+				}
+				{status !== 'loading' &&
+					<>
+						{session?.voted === false || !session ?
+							<div>You must be logged in and cast a vote to view this poll</div>
+						:
+							<BarChart data={chartData} />
+						} 
+					</>
+				}
+			</div>
 		</>
 	)
 }
