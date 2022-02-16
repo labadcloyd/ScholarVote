@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState, useRef } from 'react'
 import moment from 'moment'
+import css from '../styles/history.module.css'
 
 export default function History() {
 	const [historyData, setHistoryData] = useState(null)
@@ -38,6 +39,7 @@ export default function History() {
 				return
 			}
 			const { scrollTop, scrollHeight, clientHeight } = divRef.current;
+			console.log(scrollTop+clientHeight, scrollHeight - 100)
 			
 			if((scrollTop+clientHeight) > (scrollHeight - 100)){
 				const pastScroll = scrollTop
@@ -53,35 +55,30 @@ export default function History() {
 	}, [])
 
   return (
-		<div 
-			ref={divRef} 
-			onScroll={()=> {onScroll()}}
-			style={{
-				height: '100vh',
-				overflowY: 'auto',
-				display: 'flex',
-				flexDirection: 'column',
-			}}
-		>
-			<h1>Vote History</h1>
-			<div>
-				<div>
-					{historyData === null?
-						<div>Loading...</div>
-					:
+		<div className={css.pageWrapper}>
+			<div className={css.pageContainer}>
+				<div className={css.infiniteScrollContainer} ref={divRef} onScroll={()=> {onScroll()}}>
+					<h1>Vote History</h1>
+					<div>
 						<div>
-							{historyData.length > 0 && historyData.map((item) => {
-								return(
-									<div key={item._id}>
-										<h5>Display Name: <span>{item.display_name}</span></h5>
-										<h5>Presidential Vote: <span>{item.presidential_choice.label}</span></h5>
-										<h5>Vice-Presidential Vote: <span>{item.vice_presidential_choice.label}</span></h5>
-										<h6>{moment(item.createdAt).format("HH:mm:ss | MMM-DD-YYYY")}</h6>
-									</div>
-								)
-							})}
+							{historyData === null?
+								<div>Loading...</div>
+							:
+								<div className={css.cardsWrapper}>
+									{historyData.length > 0 && historyData.map((item) => {
+										return(
+											<div className={css.cardContainer} key={item._id}>
+												<h5>Display Name: <span>{item.display_name}</span></h5>
+												<h5>Presidential Vote: <span>{item.presidential_choice.label}</span></h5>
+												<h5>Vice-Presidential Vote: <span>{item.vice_presidential_choice.label}</span></h5>
+												<h6>{moment(item.createdAt).format("HH:mm:ss | MMM-DD-YYYY")}</h6>
+											</div>
+										)
+									})}
+								</div>
+							}
 						</div>
-					}
+					</div>
 				</div>
 			</div>
 		</div>

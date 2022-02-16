@@ -1,0 +1,48 @@
+.selectWrapper{
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.selectWrapper h2 {
+	font-size: 18px;
+	margin: 0;
+}
+.selectContainer {
+	position: relative;
+}
+.valueContainer {
+	padding: 10px;
+	border-radius: 10px;
+	border: 2px solid rgba(200, 207, 231, 0.5);
+	transition: .5s;
+	cursor: pointer;
+}
+.valueContainer:hover {
+	border: 2px solid #40bff8;
+}
+.optionsContainer {
+	position: absolute;
+	width: 100%;
+	top: 0;
+	margin-top: 50px;
+	z-index: 1;
+
+	background-color: #fff;
+	border: 2px solid rgba(200, 207, 231, 0.5);
+	border-radius: 10px;
+	padding: 10px;
+
+	height: 100%;
+	min-height: 200px;
+	overflow-y: auto;
+}
+.optionItem {
+	padding: 10px;
+	cursor: pointer;
+	transition: .5s;
+	border: 2px solid rgba(200, 207, 231, 0);
+	border-radius: 10px;
+}
+.optionItem:hover {
+	border: 2px solid rgba(200, 207, 231, 0.5);
+}

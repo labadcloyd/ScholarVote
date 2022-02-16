@@ -1,0 +1,44 @@
+.navWrapper {
+	position: fixed;
+	height: auto;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 1;
+	background-color: rgba(255, 255, 255, 1);
+	color: rgb(32, 32, 32);
+	border-bottom: 1px solid rgb(200, 207, 231);
+}
+.navContainer {
+	width: 100%;
+	max-width: 1080px;
+	height: auto;
+	padding: 15px;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.logoContainer {
+	display: flex;
+	flex-direction: row;
+	align-items:  center;
+	gap: 20px;
+}
+.logo {
+	height: 30px;
+	width: 30px;
+}
+.logoTitle {
+	font-size: 20px;
+	margin: 0;
+	cursor: pointer;
+}
+.menuContainer {
+	display: flex;
+	gap: 20px;
+	font-weight: 500;
+}

@@ -2,10 +2,12 @@ import Head from 'next/head'
 import axios from 'axios'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
+
+import { useTogglePopup } from "../context/uiContext"
 import { PresidentialChart } from '../views/layouts'
 import VicePresidentialChart from '../views/layouts/vicePresidentialChart'
-import { useTogglePopup } from "../context/uiContext"
-import { useRouter } from 'next/router'
+import css from '../styles/home.module.css'
 
 export default function Home(props) {
   const router = useRouter()
@@ -23,11 +25,6 @@ export default function Home(props) {
     });
   }
 
-  async function logOut() {
-    await axios.delete('/deleteSession')
-    router.reload(window.location.pathname)
-  }
-
   useEffect(() => {
     try {
       fetchData()
@@ -37,48 +34,57 @@ export default function Home(props) {
   }, [])
   
   return (
-    <div>
+    <div className={css.homeWrapper}>
       <Head>
         <title>Scholar Vote</title>
         <meta name="description" content="Student votes for the 2022 Philippine Elections" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div>
-        <h1>Polls by Verified Filipino Students</h1>
-        <p>
-          Browse through polls that were answered by verified students from the thousands of schools in the Philippines.
-          <span> Current poll is for the 2022 Philippine elections.</span>
-        </p>
-        <div>
-          <Link passHref href="/vote">
-            <button>
-              Cast Vote
-            </button>
-          </Link>
-          <button onClick={logOut}>
-            signout
-          </button>
+      <div className={css.headerWrapper}>
+        <div className={css.headerContainer}>
+          <div className={css.headerTitleContainer}>
+            <h1>Polls by Verified Filipino Students</h1>
+            <p>
+              Browse through polls that were answered by verified students from the thousands of schools in the Philippines.
+              <span> Current poll is for the 2022 Philippine elections.</span>
+            </p>
+            <div>
+              <Link passHref href="/vote">
+                <button>
+                  Cast Vote
+                </button>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div>
-        <h2>Presidential bets for the 2022 elections</h2>
-        <p>This poll will continue receving votes until April 8, 2022</p>
-        <PresidentialChart data={presChoice} />
+      <div className={css.sectionWrapper}>
+        <div className={css.sectionContainer}>
+            <span>This poll will continue receving votes until April 25, 2022</span>
+            <h2>Presidential bets for the 2022 elections</h2>
+            <PresidentialChart data={presChoice} />
+        </div>
       </div>
 
-      <div>
-        <h2>Vice-Presidential bets for the 2022 elections</h2>
-        <p>This poll will continue receving votes until April 8, 2022</p>
-        <VicePresidentialChart data={vPresChoice} />
+      <div className={css.sectionWrapper}>
+        <div className={css.sectionContainer}>
+            <span>This poll will continue receving votes until April 25, 2022</span>
+            <h2>Vice-Presidential bets for the 2022 elections</h2>
+            <VicePresidentialChart data={vPresChoice} />
+        </div>
+      </div>
+      
+      <div className={css.sectionWrapper}>
+        <div className={css.sectionContainer}>
+          <div className={css.footerTextContainer}>
+            <p className={css.footerText}>
+              All votes are 100% casted by verified students. Users are not allowed to cast a vote unless they are verified through their school email with a domain ending in &rdquo;edu.ph&rdquo;.
+            </p>
+          </div>
+        </div>
       </div>
 
-      <div>
-        <p>
-          All votes are 100% casted by verified students. Users are not allowed to cast a vote unless they are verified through their school email with a domain ending in &rdquo;edu.ph&rdquo;.
-        </p>
-      </div>
     </div>
   )
 }

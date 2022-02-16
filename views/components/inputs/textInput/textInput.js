@@ -1,6 +1,7 @@
+import css from './textInput.module.css'
 
 export default function TextInput(props) {
-	const { value, setValue, fieldName, placeholder, title } = props
+	const { value, setValue, fieldName, placeholder, title, description } = props
 
 	function handleChange(e) {
 		setValue((prevState) => {
@@ -9,9 +10,12 @@ export default function TextInput(props) {
 	}
 
 	return (
-		<div>
+		<div className={css.textInputWrapper}>
 			{title &&
-				<span>{title}</span>
+				<h2>{title}</h2>
+			}
+			{description &&
+				<span>{description}</span>
 			}
 			<input value={value || ''} onChange={handleChange} placeholder={placeholder || ''} />
 		</div>

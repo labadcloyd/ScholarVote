@@ -34,7 +34,7 @@ export const options = {
       min: 0,
       ticks: {
         font: { family: 'Inter' },
-        padding: 15,
+        padding: 0,
       },
       grid: {
         display: false,

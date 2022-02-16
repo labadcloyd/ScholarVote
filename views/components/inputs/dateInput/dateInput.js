@@ -1,3 +1,4 @@
+import css from './dateInput.module.css'
 
 export default function DateInput(props) {
 	const { value, setValue, fieldName, placeholder, title } = props
@@ -9,9 +10,9 @@ export default function DateInput(props) {
 	}
 
 	return (
-		<div>
+		<div className={css.DateInputWrapper}>
 			{title &&
-				<span>{title}</span>
+				<h2>{title}</h2>
 			}
 			<input type="date" value={value || ''} onChange={handleChange} placeholder={placeholder || ''} />
 		</div>

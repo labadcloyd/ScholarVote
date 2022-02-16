@@ -1,0 +1,12 @@
+.formContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	max-width: 500px;
+}
+.formContainer > h1 {
+	text-align: center;
+}
+.formContainer > span {
+	color: #f84040;
+}

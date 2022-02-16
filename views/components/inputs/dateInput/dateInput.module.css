@@ -1,0 +1,18 @@
+.DateInputWrapper{
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.DateInputWrapper h2 {
+	font-size: 18px;
+	margin: 0;
+}
+.DateInputWrapper input {
+	padding: 10px;
+	border-radius: 10px;
+	border: 2px solid rgba(200, 207, 231, 0.5);
+	cursor: pointer;
+}
+.DateInputWrapper input:focus {
+	outline-color: #40bff8;
+}

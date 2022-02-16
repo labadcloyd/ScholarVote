@@ -1,17 +1,59 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+::-webkit-scrollbar{
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-thumb{
+  background: #40bff8;
+  border-radius: 20px;
+}
+::-webkit-scrollbar-thumb:hover{
+  background: #34a0d1;
+}
+::-webkit-scrollbar-track{
+  width: 12px;
+  display: none;
+}
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Inter', Roboto, sans-serif;
-  background-color: #ffffff;
+  font-family: 'Source Sans Pro', Roboto, sans-serif;
+  background-color: #f2faff;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
-
+#__next{
+  width: 100%;
+}
 a {
   color: inherit;
+  cursor: pointer;
   text-decoration: none;
+}
+
+button {
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  padding: 10px 25px;
+  border-radius: 25px;
+  border: 0px;
+
+  background-color: #40bff8;
+  color: #fff;
+  cursor: pointer;
+
+  transition: .5s;
+}
+
+button:hover{
+  background-color: #39a6d8;
+  transform: scale(1.05);
 }
 
 * {
   box-sizing: border-box;
+  color: #090f33;
 }

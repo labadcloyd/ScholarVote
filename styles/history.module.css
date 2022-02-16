@@ -1,0 +1,56 @@
+.pageWrapper {
+	width: 100%;
+	height: 100%;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.pageContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 70px 0 20px 0;
+	
+	width: 100%;
+	height: 100vh;
+	max-width: 1080px;
+
+	border-right: 1px solid rgba(200, 207, 231, 0.253);
+	border-left: 1px solid rgba(200, 207, 231, 0.253);
+}
+.infiniteScrollContainer {
+	height: 100%;
+	width: 100%;
+	overflow-y: auto;
+	padding: 0px 20px;
+}
+.infiniteScrollContainer h1 {
+	font-size: 50px;
+}
+
+/* CARDS */
+.cardsWrapper {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+
+	gap: 25px;
+}
+.cardContainer {
+	background-color: #fff;
+	padding: 15px;
+	border-radius: 10px;
+	box-shadow: -12px 12px 19px -3px rgba(0,0,0,0.05);
+}
+.cardContainer h5 {
+	font-size: 16px;
+	font-weight: 500;
+	margin: 0 0 6px 0;
+}
+.cardContainer h6 {
+	color: rgb(148, 148, 148);
+	font-size: 12px;
+	font-weight: 400;
+	margin: 0 0 10px 0;
+}

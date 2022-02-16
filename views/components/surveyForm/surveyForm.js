@@ -5,6 +5,7 @@ import { presidential_choice, vice_presidential_choice } from '../../../constant
 import { TextInput, Select } from '../inputs'
 import DateInput from '../inputs/dateInput'
 import { useTogglePopup } from "../../../context/uiContext";
+import css from './surveyForm.module.css'
 
 export default function SurveyForm(props) {
 	const { data: session } = useSession()
@@ -61,47 +62,40 @@ export default function SurveyForm(props) {
   return (
 		<>
 			<form onSubmit={handleSubmit}>
-				<div>
-					<h1>Survey Form</h1>
-					<div>
-						<TextInput
-							value={formData.display_name}
-							setValue={setFormData}
-							fieldName={'display_name'}
-							placeholder={'Display Name'}
-						/>
-					</div>
-
-					<div>
-						<Select
-							value={formData.presidential_choice}
-							setValue={setFormData}
-							options={presidential_choice}
-							fieldName={'presidential_choice'}
-							placeholder={'Presidential Choice'}
-						/>
-					</div>
-
-					<div>
-						<Select
-							value={formData.vice_presidential_choice}
-							setValue={setFormData}
-							options={vice_presidential_choice}
-							fieldName={'vice_presidential_choice'}
-							placeholder={'Vice-Presidential Choice'}
-						/>
-					</div>
-
-					<div>
-						<DateInput
-							value={formData.birthdate}
-							setValue={setFormData}
-							options={vice_presidential_choice}
-							fieldName={'birthdate'}
-							placeholder={'Birthdate'}
-						/>
-					</div>
-
+				<div className={css.formContainer}>
+					<TextInput
+						value={formData.display_name}
+						title={'Display Name'}
+						description={'The display name will be publicly displayed in the vote history page. You may leave this empty.'}
+						setValue={setFormData}
+						fieldName={'display_name'}
+						placeholder={'Display Name'}
+					/>
+					<Select
+						value={formData.presidential_choice}
+						setValue={setFormData}
+						title={'Presidential Choice'}
+						options={presidential_choice}
+						fieldName={'presidential_choice'}
+						placeholder={'Presidential Choice'}
+					/>
+					<Select
+						value={formData.vice_presidential_choice}
+						setValue={setFormData}
+						title={'Vice-Presidential Choice'}
+						options={vice_presidential_choice}
+						fieldName={'vice_presidential_choice'}
+						placeholder={'Vice-Presidential Choice'}
+					/>
+					<DateInput
+						value={formData.birthdate}
+						title={'Birthdate'}
+						setValue={setFormData}
+						options={vice_presidential_choice}
+						fieldName={'birthdate'}
+						placeholder={'Birthdate'}
+					/>
+					<span>Once this vote is submitted you will no longer be able to change it. This vote will also be publicly displayed in the vote history page.</span>
 					<button>Submit</button>
 				</div>
 			</form>

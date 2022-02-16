@@ -1,7 +1,10 @@
+/* eslint-disable jsx-a11y/alt-text */
 import { useRouter } from 'next/router'
 import { getProviders, signIn } from "next-auth/react"
 import { useSession } from "next-auth/react"
 import { useEffect } from 'react'
+
+import css from '../styles/login.module.css'
 
 export default function Login({ providers }) {
   const { data, status } = useSession()
@@ -15,21 +18,27 @@ export default function Login({ providers }) {
 	}, [status])
 
   return (
-		<div>
+		<div className={css.pageWrapper}>
 			{status === 'unauthenticated' &&
-				<>
-					<h1>LOGIN OR SIGNUP</h1>
-					{Object.values(providers).map((provider) => (
-						<div key={provider.name}>
-							<button onClick={() => signIn(provider.id)}>
-								Signin or Signup with {provider.name}
-							</button>
-						</div>
-					))}
-				</>
+				<div className={css.pageContainer}>
+					<div className={css.cardContainer}>
+						<h1>SIGNIN OR SIGNUP</h1>
+						<p>
+							In order to keep the votes casted as authentic as possible, you are required to use your school email that ends with a domain of &rdquo;edu.ph&rdquo;
+						</p>
+						{Object.values(providers).map((provider) => (
+							<div key={provider.name}>
+								<button onClick={() => signIn(provider.id)}>
+									<img src='https://res.cloudinary.com/dzpphtqox/image/upload/v1645021309/Scholar%20Vote/178-1783296_g-transparent-circle-google-logo-min_enf1cz.png'/>
+									Signin or Signup with {provider.name}
+								</button>
+							</div>
+						))}
+					</div>
+				</div>
 			}
 			{status === 'loading' && 
-				<div>
+				<div className={css.pageContainer}>
 					<h1>Loading...</h1>
 				</div>
 			}

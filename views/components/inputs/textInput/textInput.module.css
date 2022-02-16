@@ -1,0 +1,22 @@
+.textInputWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.textInputWrapper h2 {
+	font-size: 18px;
+	margin: 0;
+}
+.textInputWrapper span {
+	color: #757575;
+}
+.textInputWrapper input {
+	padding: 10px;
+	border-radius: 10px;
+	border: 2px solid rgba(200, 207, 231, 0.5);
+	outline-color: rgba(200, 207, 231, 0.5);
+	transition: .5s;
+}
+.textInputWrapper input:focus {
+	outline-color: #40bff8;
+}

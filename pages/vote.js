@@ -1,8 +1,10 @@
+import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useSession } from "next-auth/react"
 import { useEffect, useState } from 'react'
 import { SurveyForm } from '../views/components'
-import axios from 'axios'
+
+import css from '../styles/vote.module.css'
 
 export default function Vote(props) {
 	const { data, status } = useSession()
@@ -31,24 +33,30 @@ export default function Vote(props) {
 	}, [status])
 
   return (
-		<div>
+		<div className={css.pageWrapper}>
 			{ (status === 'authenticated' && hasVoted === true) &&
-				<>
-					<h1>You are only allowed to vote once</h1>
-				</>
+				<div className={css.pageContainer}>
+					<div className={css.formContainer}>
+						<h1>You are only allowed to vote once</h1>
+					</div>
+				</div>
 			}
 			{ (status === 'authenticated' && hasVoted === false) &&
 				<>
-					<div>
-						<h1>Answer Poll</h1>
-						<SurveyForm session={data} />
+					<div className={css.pageContainer}>
+						<div className={css.formContainer}>
+							<h1>2022 Philippine Elections Poll</h1>
+							<SurveyForm session={data} />
+						</div>
 					</div>
 				</>
 			}
 			{ (status === 'loading' || hasVoted === null) &&
-				<>
-					<h1>Loading...</h1>
-				</>
+				<div className={css.pageContainer}>
+					<div className={css.formContainer}>
+						<h1>Loading...</h1>
+					</div>
+				</div>
 			}
 
 		</div>
