@@ -31,16 +31,13 @@ export default async function handler(req, res) {
 			return res.status(400).json([{ message: 'Error: Missing fields' }])
 		}
 		const foundUser = await User.findOne({ email: email })
-		/*
-			! UNCOMMENT AFTER TESTING
-		*/
-		// if (foundUser.voted === true) {
-		// 	return res.status(400).json([{ message: 'Error: You can only vote once' }])
-		// }
+		if (foundUser.voted === true) {
+			return res.status(400).json([{ message: 'Error: You can only vote once' }])
+		}
 
-		function calculateAge(birthday) { // birthday is a date
+		function calculateAge(birthday) {
 			var ageDifMs = Date.now() - new Date(birthday).getTime();
-			var ageDate = new Date(ageDifMs); // miliseconds from epoch
+			var ageDate = new Date(ageDifMs);
 			return Math.abs(ageDate.getUTCFullYear() - 1970);
 		}
 

@@ -1,15 +1,13 @@
+import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { useSession } from "next-auth/react"
 import { presidential_choice, vice_presidential_choice } from '../../../constants/surveyFormOptions'
 import { TextInput, Select } from '../inputs'
-import axios from 'axios'
 import DateInput from '../inputs/dateInput'
-import {
-	useAuthContext,
-  useTogglePopup
-} from "../../../context/uiContext";
+import { useTogglePopup } from "../../../context/uiContext";
 
 export default function SurveyForm(props) {
-	const { data: session } = useAuthContext()
+	const { data: session } = useSession()
 	const togglePopup = useTogglePopup()
 
 	const initialFormData = {

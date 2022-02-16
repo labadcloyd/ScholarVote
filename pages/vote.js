@@ -3,25 +3,21 @@ import { useSession } from "next-auth/react"
 import { useEffect, useState } from 'react'
 import { SurveyForm } from '../views/components'
 import axios from 'axios'
-import { useAuthContext } from "../context/uiContext";
 
 export default function Vote(props) {
-	const { data, status } = useAuthContext()
+	const { data, status } = useSession()
 
 	const router = useRouter()
 	const [hasVoted, setHasVoted] = useState(null)
 
 	async function fetchUser(email) {
 		const foundUser = await axios.get('/api/user', { params: { email: email } })
-		/*
-			! UNCOMMENT AFTER TESTING
-		*/
 		setHasVoted(false)
-		// if (foundUser?.data?.voted === false) {
-		// 	setHasVoted(false)
-		// } else {
-		// 	setHasVoted(true)
-		// }
+		if (foundUser?.data?.voted === false) {
+			setHasVoted(false)
+		} else {
+			setHasVoted(true)
+		}
 	}
 
 	useEffect(() => {

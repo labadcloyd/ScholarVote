@@ -34,18 +34,21 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>My Student Vote</title>
+        <title>Scholar Vote</title>
         <meta name="description" content="Student votes for the 2022 Philippine Elections" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <div>
         <h1>Polls by Verified Filipino Students</h1>
-        <p>Browse through polls that were answered by verified students from the thousands of schools in the Philippines</p>
+        <p>
+          Browse through polls that were answered by verified students from the thousands of schools in the Philippines.
+          <span> Current poll is for the 2022 Philippine elections.</span>
+        </p>
         <div>
           <Link passHref href="/vote">
             <button>
-              Cast a Vote on The Current Poll
+              Cast Vote
             </button>
           </Link>
         </div>
