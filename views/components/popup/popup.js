@@ -4,6 +4,7 @@ import {
   usePopupState,
   useTogglePopup
 } from "../../../context/uiContext";
+import css from './popup.module.css'
 
 export default function Popup() {
 	const popup = usePopupState()
@@ -18,18 +19,10 @@ export default function Popup() {
 	return (
 		<>
 			{popup.show === true &&
-				<div style={{ 
-					height: '100vh', 
-					width: '100vw',
-					position: 'fixed',
-					top: '0',
-					display: 'flex',
-					justifyContent: 'center',
-					alignItems: 'center'
-				}}>
-					<h1>
+				<div className={css.popupContainer}>
+					<p>
 						{popup.message || ''}
-					</h1>
+					</p>
 				</div>
 			}
 		</>

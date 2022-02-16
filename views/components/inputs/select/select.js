@@ -48,7 +48,7 @@ export default function Select(props) {
 								<div 
 									key={val}
 									className={css.optionItem}
-									onClick={() => { handleClick({ value: val, label: lab }) }}
+									onClick={() => { handleClick({ value: val, label: lab }); setShowOptions(false) }}
 								>
 									{lab}
 								</div>
