@@ -102,4 +102,16 @@
 	color: #6b6b6b;
 	text-align: center;
 	max-width: 600px;
+
+	display: flex;
+	gap: 20px;
+}
+.footerContainer {
+	margin-top: 60px;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+.footerText span{
+	color: #6b6b6b;
 }

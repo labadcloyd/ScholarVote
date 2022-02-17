@@ -84,6 +84,14 @@ export default function Home(props) {
           </div>
         </div>
       </div>
+      <div className={css.footerContainer}>
+        <p className={css.footerText}>
+          <span>© Scholar Vote 2022</span>
+          <Link href='/privacypolicy'>Privacy Policy</Link>
+          <Link href='/termsandconditions'>Terms And Conditions</Link>
+          <span>Contact: myscholarvote@gmail.com</span>
+        </p>
+      </div>
 
     </div>
   )
