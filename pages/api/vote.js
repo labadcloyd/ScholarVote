@@ -56,25 +56,25 @@ export default async function handler(req, res) {
 		foundUser.voted = true
 		foundUser.age = calculateAge(birthdate)
 
-		// UPDATING SESSION TOKEN
-		const cookieHeader = req.headers.cookie.split(';')
-		const foundToken = cookieHeader.find((item) => {
-			if (item.includes('session-token')) {
-				return item
-			}
-		})
-		const token = foundToken.split('=')
-		const jwt = await decode({ token: token[1], secret: secret })
+		// // UPDATING SESSION TOKEN
+		// const cookieHeader = req.headers.cookie.split(';')
+		// const foundToken = cookieHeader.find((item) => {
+		// 	if (item.includes('session-token')) {
+		// 		return item
+		// 	}
+		// })
+		// const token = foundToken.split('=')
+		// const jwt = await decode({ token: token[1], secret: secret })
 		
-		jwt.voted = true
-		const encodedCookie = await encode({ token: jwt, secret: secret })
-		token[1] = encodedCookie
-		cookieHeader[cookieHeader.length-1] = token.join('=')
+		// jwt.voted = true
+		// const encodedCookie = await encode({ token: jwt, secret: secret })
+		// token[1] = encodedCookie
+		// cookieHeader[cookieHeader.length-1] = token.join('=')
 
 		try {
 			await foundUser.save()
 			await newVote.save()
-			return res.setHeader('Set-Cookie', cookieHeader).status(201).json([{ message: 'Successfully saved vote' }])
+			return res.status(201).json([{ message: 'Successfully saved vote' }])
 		} catch(err){
 			if (err) {
 				console.log({error: err})

@@ -21,7 +21,7 @@ export const initialdata = {
 export default function VicePresidentialChart(props) {
   const { data: session, status } = useSession()
 
-	const { data } = props
+	const { data, loading } = props
 	const [chartData, setChartData] = useState(initialdata)
 	const [totalVotes, setTotalVotes] = useState(0)
 
@@ -60,14 +60,14 @@ export default function VicePresidentialChart(props) {
 	return (
 		<>
 			<div className={css.componentWrapper}>
-				{status === 'loading' &&
+				{loading === true &&
 					<div className={css.chartWrapper}>
 						<div className={css.chartContainer}>
 							<div>Loading...</div>
 						</div>
 					</div>
 				}
-				{status !== 'loading' &&
+				{loading === false &&
 					<>
 						{session?.voted === false || !session ?
 							<div className={css.chartWrapper}>

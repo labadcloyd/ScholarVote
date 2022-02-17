@@ -15,7 +15,7 @@ export default function SurveyForm(props) {
 	const togglePopup = useTogglePopup()
 
 	const [isVoteSubmitted, setIsVoteSubmitted] = useState(false)
-	const [counter, setCounter] = useState(10)
+	const [counter, setCounter] = useState(5)
 
 	const initialFormData = {
 		display_name: '',
@@ -53,6 +53,7 @@ export default function SurveyForm(props) {
 					email: session.user.email,
 				}
 				await axios.post('/api/vote', finalFormData)
+				await axios.get('/api/auth/session', {params: { update: true } } )
 				return setIsVoteSubmitted(true)
 			}
 			const finalFormData = {
@@ -61,11 +62,16 @@ export default function SurveyForm(props) {
 				email: session.user.email
 			}
 			await axios.post('/api/vote', finalFormData)
+			await axios.get('/api/auth/session', {params: { update: true } } )
 			return setIsVoteSubmitted(true)
 		} catch (err) {
 			togglePopup(true, 'error', 'A server error occured')
 		}
 	}
+	async function reloadPage() {
+		return router.reload(window.location.pathname)
+	}
+
 	useEffect(() => {
 		if (isVoteSubmitted === true) {
 			setInterval(function () {
@@ -80,7 +86,7 @@ export default function SurveyForm(props) {
 
 	useEffect(() => {
 		if(counter === 0) {
-			return router.reload(window.location.pathname)
+			reloadPage()
 		}
 	}, [counter])
 

@@ -43,6 +43,7 @@ export const options = {
     }
   },
   layout: {
+    padding: 5
   },
   elements: {
     bar: {
@@ -52,6 +53,7 @@ export const options = {
     },
   },
   responsive: true,
+  maintainAspectRatio: false,
   plugins: {
     legend: {
       display: false,
