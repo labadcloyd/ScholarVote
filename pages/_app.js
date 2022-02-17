@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <link rel="icon" type="ico" sizes="32x32" href="https://res.cloudinary.com/dzpphtqox/image/upload/v1644996340/Scholar%20Vote/logo_z3np9x.ico" />
-          <title>My Student Vote</title>
+          <title>Scholar Vote</title>
         </Head>
         <Popup />
         <Navbar />

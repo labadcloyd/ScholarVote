@@ -59,7 +59,7 @@ export default async function handler(req, res) {
 		// UPDATING SESSION TOKEN
 		const cookieHeader = req.headers.cookie.split(';')
 		const foundToken = cookieHeader.find((item) => {
-			if (item.includes('next-auth.session-token')) {
+			if (item.includes('session-token')) {
 				return item
 			}
 		})
