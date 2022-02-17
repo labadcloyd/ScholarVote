@@ -2,6 +2,7 @@ import axios from 'axios';
 import NextAuth from 'next-auth'
 import GoogleProvider from "next-auth/providers/google";
 import { User } from '../../../backend/models'
+import mongoose from 'mongoose'
 
 export default NextAuth({
   session:{
@@ -21,6 +22,10 @@ export default NextAuth({
   },
   callbacks: {
     async signIn(data) {
+      await mongoose.connect(process.env.MONGO_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      });
       const { account, profile, user } = data
       if (account.provider === "google") {
         if (profile.email_verified && profile.email.endsWith("edu.ph")) {

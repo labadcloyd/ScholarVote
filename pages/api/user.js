@@ -1,7 +1,9 @@
 import { User } from '../../backend/models'
 import { getSession } from "next-auth/react"
+const { connectDb } = require('../../backend/utils/connectDB');
 
 export default async function handler(req, res) {
+	await connectDb();
   const session = await getSession({ req })
 	if (!session) {
 		return res.status(401).json([{ message: 'Error: Unauthenticated request' }])

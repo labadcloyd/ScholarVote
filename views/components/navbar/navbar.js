@@ -10,7 +10,7 @@ export default function Navbar() {
   const router = useRouter()
 
   async function logOut() {
-    await axios.delete('/deleteSession')
+    await axios.delete('/api/logout')
     router.reload(window.location.pathname)
   }
 

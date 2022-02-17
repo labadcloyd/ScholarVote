@@ -1,6 +1,8 @@
 import { Vote } from "../../backend/models"
+const { connectDb } = require('../../backend/utils/connectDB');
 
 export default async function handler(req, res) {
+	await connectDb();
 	if (req.method === 'GET') {
 		const id = req.query?.id
 		if (id) {

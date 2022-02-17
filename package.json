@@ -2,15 +2,16 @@
   "name": "mystudentvote",
   "private": true,
   "scripts": {
-    "dev": "node server.js",
+    "dev": "next",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
+    "start": "next",
     "lint": "next lint"
   },
   "dependencies": {
     "auth": "^0.0.1",
     "axios": "^0.26.0",
     "bcryptjs": "^2.4.3",
+    "cookie": "^0.4.2",
     "dotenv": "^16.0.0",
     "express": "^4.17.2",
     "jsonwebtoken": "^8.5.1",

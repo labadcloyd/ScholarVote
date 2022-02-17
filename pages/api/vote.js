@@ -2,8 +2,10 @@ import { User, Vote } from '../../backend/models'
 import { getSession } from "next-auth/react"
 import { decode, encode } from "next-auth/jwt"
 const secret = process.env.NEXTAUTH_SECRET
+const { connectDb } = require('../../backend/utils/connectDB');
 
 export default async function handler(req, res) {
+	await connectDb();
   if (req.method === 'GET') {
 		const { voteChoice } = req.query
 		const totalVotes = await Vote.aggregate([
