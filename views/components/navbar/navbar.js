@@ -1,17 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { useSession } from "next-auth/react"
+import { signOut, useSession } from "next-auth/react"
 import css from './navbar.module.css'
-import axios from 'axios'
 
 export default function Navbar() {
 	const { data, status } = useSession()
-  const router = useRouter()
 
   async function logOut() {
-    await axios.delete('/api/logout')
-    router.reload(window.location.pathname)
+		await signOut()
   }
 
 	return(
@@ -39,7 +35,9 @@ export default function Navbar() {
 					{status !== 'loading' &&
 						<>
 							{status === 'authenticated'?
-								<a onClick={() => { logOut() }}>Logout</a>
+								<Link passHref href="/api/auth/signout">
+									<a>Logout</a>
+								</Link>
 							:
 								<Link passHref href="/login">
 									<a>Signin</a>

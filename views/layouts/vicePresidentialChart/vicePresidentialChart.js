@@ -61,7 +61,11 @@ export default function VicePresidentialChart(props) {
 		<>
 			<div className={css.componentWrapper}>
 				{status === 'loading' &&
-					<div>Loading...</div>
+					<div className={css.chartWrapper}>
+						<div className={css.chartContainer}>
+							<div>Loading...</div>
+						</div>
+					</div>
 				}
 				{status !== 'loading' &&
 					<>

@@ -6,8 +6,10 @@ import { TextInput, Select } from '../inputs'
 import DateInput from '../inputs/dateInput'
 import { useTogglePopup } from "../../../context/uiContext";
 import css from './surveyForm.module.css'
+import { useRouter } from 'next/router'
 
 export default function SurveyForm(props) {
+	const router = useRouter()
 	const { data: session } = useSession()
 	const togglePopup = useTogglePopup()
 
@@ -46,14 +48,16 @@ export default function SurveyForm(props) {
 					display_name: 'Anonymous',
 					email: session.user.email,
 				}
-				return await axios.post('/api/vote', finalFormData)
+				await axios.post('/api/vote', finalFormData)
+				return router.reload(window.location.pathname)
 			}
 			const finalFormData = {
 				...formData,
 				email_domain: domain,
 				email: session.user.email
 			}
-			return await axios.post('/api/vote', finalFormData)
+			await axios.post('/api/vote', finalFormData)
+			return router.reload(window.location.pathname)
 		} catch (err) {
 			togglePopup(true, 'error', 'A server error occured')
 		}

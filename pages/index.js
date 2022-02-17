@@ -89,7 +89,7 @@ export default function Home(props) {
           <span>© Scholar Vote 2022</span>
           <Link href='/privacypolicy'>Privacy Policy</Link>
           <Link href='/termsandconditions'>Terms And Conditions</Link>
-          <span>Contact: myscholarvote@gmail.com</span>
+          <span>Contact: myscholarvote@gmail.com </span>
         </p>
       </div>
 
