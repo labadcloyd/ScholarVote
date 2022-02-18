@@ -94,18 +94,30 @@ export default function Home(props) {
       </div>
       <div className={css.footerContainer}>
         <p className={css.footerText}>
-          <div>
-            <Link href='/privacypolicy'>Privacy Policy</Link>
-            <Link href='/termsandconditions'>Terms And Conditions</Link>
-          </div>
-          <span>© Scholar Vote 2022</span>
-          <div>
-            <span>Contact: myscholarvote@gmail.com</span>
-            <span>
-              Developed by: 
-              <Link href='https://github.com/labadcloyd'> Cloyd Abad</Link>
+          <Link passHref href='/'>
+            <span className={css.copyrightText}>
+              © Scholar Vote 2022
             </span>
-          </div>
+          </Link>
+          <Link passHref href='/privacypolicy'>
+            <span>
+              Privacy Policy
+            </span>
+          </Link>
+          <Link passHref href='/termsandconditions'>
+            <span>
+              Terms And Conditions
+            </span>
+          </Link>
+          <Link passHref href='mailto:myscholarvote@gmail.com'>
+            <span>
+              Contact
+            </span>
+          </Link>
+          <span>
+            Developed by: 
+            <Link href='https://github.com/labadcloyd'> Cloyd Abad</Link>
+          </span>
         </p>
       </div>
 

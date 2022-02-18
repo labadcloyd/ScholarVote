@@ -66,6 +66,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	text-align: center;
 }
 .sectionContainer {
 	display: flex;
@@ -100,7 +101,7 @@
 }
 .footerText {
 	font-size: 14px !important;
-	color: #6b6b6b;
+	color: #757575;
 	text-align: center;
 
 	display: flex;
@@ -113,5 +114,40 @@
 	width: 100%;
 }
 .footerText span{
-	color: #6b6b6b;
+	color: #00aeff;
+	cursor: pointer;
+}
+.copyrightText {
+	color: #757575 !important;
+	font-weight: 600;
+}
+
+/* RESPONSIVE ATRS */
+@media only screen and (max-width: 600px) {
+	.headerTitleContainer {
+		align-items: center;
+	}
+	.headerTitleContainer h1 {
+		font-size: 50px;
+		text-align: center;
+	}
+	.headerTitleContainer p {
+		font-size: 16px;
+		text-align: center;
+	}
+	.headerTitleContainer button {
+		text-align: center;
+	}
+
+	/*section content*/
+	.sectionContainer h2 {
+		font-size: 25px;
+	}
+
+	/*footer container*/
+	.footerText {
+		flex-direction: column-reverse;
+		gap: 5px;
+		padding-bottom: 10px;
+	}
 }
