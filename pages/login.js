@@ -22,7 +22,7 @@ export default function Login({ providers }) {
 			{status === 'unauthenticated' &&
 				<div className={css.pageContainer}>
 					<div className={css.cardContainer}>
-						<h1>SIGNIN OR SIGNUP</h1>
+						<h1>SIGN IN OR SIG NUP</h1>
 						<p>
 							In order to keep the votes casted as authentic as possible, you are required to use your school email that ends with a domain of &rdquo;edu.ph&rdquo;
 						</p>
@@ -30,7 +30,7 @@ export default function Login({ providers }) {
 							<div key={provider.name}>
 								<button onClick={() => signIn(provider.id)}>
 									<img src='https://res.cloudinary.com/dzpphtqox/image/upload/v1645021309/Scholar%20Vote/178-1783296_g-transparent-circle-google-logo-min_enf1cz.png'/>
-									Signin or Signup with {provider.name}
+									Sign In or Sign Up with {provider.name}
 								</button>
 							</div>
 						))}

@@ -57,11 +57,11 @@ export default function Navbar() {
 						<>
 							{status === 'authenticated'?
 								<Link passHref href="/api/auth/signout">
-									<a>Logout</a>
+									<a>Log Out</a>
 								</Link>
 							:
 								<Link passHref href="/login">
-									<a>Signin</a>
+									<a>Sign In</a>
 								</Link>
 							}
 						</>
@@ -91,11 +91,11 @@ export default function Navbar() {
 						<>
 							{status === 'authenticated'?
 								<Link passHref href="/api/auth/signout">
-									<a>Logout</a>
+									<a>Log Out</a>
 								</Link>
 							:
 								<Link passHref href="/login">
-									<a>Signin</a>
+									<a>Sign In</a>
 								</Link>
 							}
 						</>
