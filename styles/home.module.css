@@ -1,9 +1,10 @@
 /* HEADER CONTAINERS */
 .homeWrapper {
 	width: 100%;
+	overflow: hidden;
 }
 .headerWrapper {
-	min-height: 600px;
+	min-height: 800px;
 	max-height: 800px;
 	height: 100vh;
 	
@@ -31,6 +32,7 @@
 
 /* HEADER CONTENT */
 .headerTitleContainer {
+	position: relative;
 	max-width: 600px;
 
 	display: flex;
