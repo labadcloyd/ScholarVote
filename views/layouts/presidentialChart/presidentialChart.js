@@ -69,22 +69,12 @@ export default function PresidentialChart(props) {
 					</div>
 				}
 				{loading === false &&
-					<>
-						{session?.voted === false || !session ?
-							<div className={css.chartWrapper}>
-								<div className={css.chartContainer}>
-									You must be logged in and cast a vote to view this poll
-								</div>
-							</div>
-						:
-							<div className={css.chartWrapper}>
-								<div className={css.chartContainer}>
-									<BarChart data={chartData} />
-									<p>{`As of ${currentDate}, this poll has collected a total ${totalVotes} votes`} </p>
-								</div>
-							</div>
-						} 
-					</>
+					<div className={css.chartWrapper}>
+						<div className={css.chartContainer}>
+							<BarChart data={chartData} />
+							<p>{`As of ${currentDate}, this poll has collected a total ${totalVotes} votes`} </p>
+						</div>
+					</div>
 				}
 			</div>
 		</>

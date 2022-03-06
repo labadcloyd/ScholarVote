@@ -87,7 +87,7 @@ export default function Home(props) {
         <div className={css.sectionContainer}>
           <div className={css.footerTextContainer}>
             <p className={css.footerText}>
-              All votes are 100% casted by verified students. Users are not allowed to cast a vote unless they are verified through their school email with a domain ending in &rdquo;edu.ph&rdquo;.
+              Disclaimer: All votes were supposed to be 100% casted by verified students. Users were not allowed to cast a vote unless they were verified through their school email with a domain ending in &rdquo;edu.ph&rdquo;. But due to poor marketing, only a hand few students answered the survey. And with that, this site is no longer a legitimate poll but will now only serve as a portfolio project. The data shown above was randomly made and does not represent any verified students&apos; vote. 
             </p>
           </div>
         </div>

@@ -22,7 +22,7 @@ export default function Login({ providers }) {
 			{status === 'unauthenticated' &&
 				<div className={css.pageContainer}>
 					<div className={css.cardContainer}>
-						<h1>SIGN IN OR SIG NUP</h1>
+						<h1>SIGN IN OR SIGN UP</h1>
 						<p>
 							In order to keep the votes casted as authentic as possible, you are required to use your school email that ends with a domain of &rdquo;edu.ph&rdquo;
 						</p>
