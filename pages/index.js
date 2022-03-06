@@ -30,16 +30,12 @@ export default function Home(props) {
   }
 
   useEffect(() => {
-    if (status === 'authenticated') {
-      try {
-        return fetchData()
-      } catch(err) {
-        togglePopup(true, 'error', 'A server error occured')
-      }
-    } if (status === 'unauthenticated') {
-      setIsLoading(false)
+    try {
+      return fetchData()
+    } catch(err) {
+      togglePopup(true, 'error', 'A server error occured')
     }
-  }, [status])
+  }, [])
   
   return (
     <div className={css.homeWrapper}>
